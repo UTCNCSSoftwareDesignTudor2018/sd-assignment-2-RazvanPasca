@@ -1,10 +1,7 @@
 package assignment2.code.persistance.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
@@ -13,11 +10,15 @@ public class Grade {
 
     @EmbeddedId
     private EnrolmentId id;
-//
-//    @OneToOne(fetch = FetchType.EAGER,
-//            cascade = CascadeType.PERSIST)
-//    @MapsId
-//    private Enrolment enrolment;
+
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.PERSIST)
+    @MapsId("enrolmentId")
+    @JoinColumns({
+            @JoinColumn(name = "course_id", referencedColumnName = "course_id"),
+            @JoinColumn(name = "student_id", referencedColumnName = "student_id")
+    })
+    private Enrolment enrolment;
 
     @Column
     private Date requestDate;
@@ -38,7 +39,7 @@ public class Grade {
         return id;
     }
 
-    public void setId(EnrolmentId id) {
+    public void GradeId(EnrolmentId id) {
         this.id = id;
     }
 
@@ -48,9 +49,10 @@ public class Grade {
         this.id.setCourseId(course.getId());
     }
 
-    public void addGrade(Integer grad, Enrolment enrolment){
+    public void addGrade(Integer grad, Enrolment enrolment) {
         this.grade = grad;
         this.id = enrolment.getId();
+        this.enrolment = enrolment;
     }
 
 //    public Course getCourse() {

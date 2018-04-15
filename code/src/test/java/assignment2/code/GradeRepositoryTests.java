@@ -1,6 +1,9 @@
 package assignment2.code;
 
-import assignment2.code.persistance.entity.*;
+import assignment2.code.persistance.entity.Course;
+import assignment2.code.persistance.entity.Enrolment;
+import assignment2.code.persistance.entity.Grade;
+import assignment2.code.persistance.entity.Student;
 import assignment2.code.persistance.repository.EnrolmentRepository;
 import assignment2.code.persistance.repository.GradeRepository;
 import assignment2.code.persistance.repository.StudentRepository;
@@ -13,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -53,11 +55,11 @@ public class GradeRepositoryTests {
     }
 
     @Test
-    public void testGradeMethods() {
+    public void testGradeInsert() {
         Student student1 = studentRepository.findByEmail("alice@yahoo.com");
         Enrolment enrolment = student1.getEnrolments().get(0);
         System.out.println(enrolment);
-        Optional<Grade> grade = gradeRepository.findById(enrolment.getId());
-        assert (grade.get().getGrade() == 5);
+        Optional<Grade> grade1 = gradeRepository.findById(enrolment.getId());
+        assert (grade1.get().getGrade() == 5);
     }
 }
