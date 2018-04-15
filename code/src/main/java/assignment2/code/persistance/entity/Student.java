@@ -31,24 +31,6 @@ public class Student {
     )
     private List<Enrolment> enrolments = new ArrayList<>();
 
-
-//    @OneToMany(
-//            mappedBy = "student",
-//            cascade = CascadeType.PERSIST,
-//            orphanRemoval = true,
-//            fetch = FetchType.EAGER
-//    )
-//    private List<Grade> grades = new ArrayList<>();
-
-
-//    public List<Grade> getGrades() {
-//        return grades;
-//    }
-//
-//    public void setGrades(List<Grade> grades) {
-//        this.grades = grades;
-//    }
-
     public List<Enrolment> getEnrolments() {
         return enrolments;
     }
@@ -63,11 +45,10 @@ public class Student {
         course.getEnrolments().add(enrolment);
     }
 
-    public void addGrade(Integer grade, Course course){
-        Grade grade1 = new Grade(grade);
-        grade1.addGrade(grade,course,this);
-
-    }
+//    public void addGrade(Integer grade, Course course){
+//        Grade grade1 = new Grade(grade);
+//        grade1.addGrade(grade,course,this);
+//    }
 
     public Grade addGrade(Integer grade, Enrolment enrolment) {
         Grade grade1 = new Grade(grade);
