@@ -64,4 +64,5 @@ public class EnrolmentRepositoryTests {
         List<Enrolment> allEnrolments = enrolmentRepository.findAll();
         assert (0 != allEnrolments.size());
     }
+
 }

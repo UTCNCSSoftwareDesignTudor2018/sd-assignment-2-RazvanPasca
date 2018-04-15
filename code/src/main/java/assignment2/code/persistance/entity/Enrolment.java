@@ -1,8 +1,6 @@
 package assignment2.code.persistance.entity;
 
 
-import org.hibernate.annotations.Fetch;
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
@@ -83,5 +81,14 @@ public class Enrolment {
     public int hashCode() {
 
         return Objects.hash(student, course);
+    }
+
+    @Override
+    public String toString() {
+        return "Enrolment{" +
+                "student=" + student +
+                ", course=" + course +
+                ", requestDate=" + requestDate +
+                '}';
     }
 }

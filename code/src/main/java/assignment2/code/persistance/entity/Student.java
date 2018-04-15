@@ -26,9 +26,18 @@ public class Student {
     @OneToMany(
             mappedBy = "student",
             cascade = CascadeType.PERSIST,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
     )
     private List<Enrolment> enrolments = new ArrayList<>();
+
+    public List<Enrolment> getEnrolments() {
+        return enrolments;
+    }
+
+    public void setEnrolments(List<Enrolment> enrolments) {
+        this.enrolments = enrolments;
+    }
 
     public void addCourse(Course course) {
         Enrolment enrolment = new Enrolment(this, course);
@@ -42,9 +51,10 @@ public class Student {
 
     }
 
-    public void addGrade(Integer grade, Enrolment enrolment){
+    public Grade addGrade(Integer grade, Enrolment enrolment) {
         Grade grade1 = new Grade();
         grade1.addGrade(grade,enrolment);
+        return grade1;
     }
 
     public void removeCourse(Course course) {
@@ -166,7 +176,6 @@ public class Student {
     public void setStudyGroup(int studyGroup) {
         this.studyGroup = studyGroup;
     }
-
 
     public Integer getId() {
         return id;

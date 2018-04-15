@@ -1,7 +1,10 @@
 package assignment2.code.persistance.entity;
 
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.sql.Date;
 
 @Entity
@@ -10,17 +13,26 @@ public class Grade {
 
     @EmbeddedId
     private EnrolmentId id;
-
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade = CascadeType.PERSIST)
-    @MapsId
-    private Enrolment enrolment;
+//
+//    @OneToOne(fetch = FetchType.EAGER,
+//            cascade = CascadeType.PERSIST)
+//    @MapsId
+//    private Enrolment enrolment;
 
     @Column
     private Date requestDate;
 
     @Column
     private Integer grade;
+
+    public Grade(Integer grade) {
+        this.grade = grade;
+        this.requestDate = new Date(System.currentTimeMillis());
+    }
+
+    public Grade() {
+        this.requestDate = new Date(System.currentTimeMillis());
+    }
 
     public EnrolmentId getId() {
         return id;
@@ -41,9 +53,9 @@ public class Grade {
         this.id = enrolment.getId();
     }
 
-    public Course getCourse() {
-        return enrolment.getCourse();
-    }
+//    public Course getCourse() {
+//        return enrolment.getCourse();
+//    }
 
 
     public Date getRequestDate() {
@@ -54,5 +66,11 @@ public class Grade {
         this.requestDate = requestDate;
     }
 
+    public Integer getGrade() {
+        return grade;
+    }
 
+    public void setGrade(Integer grade) {
+        this.grade = grade;
+    }
 }
