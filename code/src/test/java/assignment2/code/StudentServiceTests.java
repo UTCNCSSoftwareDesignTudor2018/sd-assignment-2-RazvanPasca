@@ -72,7 +72,7 @@ public class StudentServiceTests {
 
         studentService.enroll(course);
 
-        List<Course> courses = studentService.viewEnrolledCourse();
+        List<Course> courses = studentService.viewEnrolledCourses();
         assertEquals(course, courses.get(0));
     }
 

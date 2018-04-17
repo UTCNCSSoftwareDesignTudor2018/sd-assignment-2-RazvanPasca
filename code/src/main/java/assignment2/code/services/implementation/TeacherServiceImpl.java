@@ -11,19 +11,31 @@ import java.util.List;
 @Service
 public class TeacherServiceImpl implements TeacherService {
 
-    private TeacherRepository teacherRepository;
-    private EnrolmentService enrolmentService;
+    @Autowired
     public TeacherContextHolder teacherContextHolder;
+    @Autowired
+    private TeacherRepository teacherRepository;
+    @Autowired
+    private EnrolmentService enrolmentService;
+    @Autowired
     private GradeService gradeService;
+    @Autowired
     private StudentService studentService;
+    @Autowired
+    private CourseService courseService;
 
     @Autowired
     public TeacherServiceImpl(TeacherRepository teacherRepository, StudentService studentService,
+                              CourseService courseService,
                               EnrolmentService enrolmentService, GradeService gradeService) {
         this.teacherRepository = teacherRepository;
         this.enrolmentService = enrolmentService;
         this.studentService = studentService;
         this.gradeService = gradeService;
+        this.courseService = courseService;
+    }
+
+    public TeacherServiceImpl() {
     }
 
     @Override
@@ -56,7 +68,6 @@ public class TeacherServiceImpl implements TeacherService {
         return enrolmentService.findStudentsByCourse(course);
     }
 
-
     @Override
     public Grade addStudentGrade(Student student, Course course, Integer grade) {
         return gradeService.addGrade(student, course, grade);
@@ -66,5 +77,16 @@ public class TeacherServiceImpl implements TeacherService {
     public Teacher updateProfile(Teacher teacher) {
         return teacherRepository.save(teacher);
     }
+
+    @Override
+    public List<Course> viewMyCourses() {
+        return courseService.findCoursesByTeacher(TeacherContextHolder.getCurrentUser());
+    }
+
+    @Override
+    public List<Teacher> viewAllTeachers() {
+        return teacherRepository.findAll();
+    }
+
 
 }

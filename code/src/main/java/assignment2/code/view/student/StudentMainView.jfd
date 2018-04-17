@@ -1,0 +1,81 @@
+JFDML JFormDesigner: "6.0.2.0.116" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :::p, comp tabbedPane1:::p:697:p, space ::30:x}}"
+			"$verticalGroup": "par l {seq t {space ::31:x, comp tabbedPane1:::p:336:p, space :p:17:p}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tabbedPane1"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:21:p, par l {seq {comp updateProfileButton:::p:164:p, space ::510:x}, seq {par t {comp label1::l:::x, comp label2::t::139:x, comp label3::t::139:x}, space s:::p, par l:::p {comp nameTextField::::152:x, comp addressTextField::l::152:x, comp cnpTextField::l::152:x}, space :p:71:p, par l:::p {comp label4::::74:x, comp label5::::74:x, comp label6::l::74:x}, space u:::p, par l:::p {comp passwordTextField::::164:x, comp groupTextField::::164:x, comp emailTextField::::164:x}, space :p:44:p}}}}"
+					"$verticalGroup": "par l {seq l {space :p:38:p, par l {seq {comp label1:::::x, space s:::p, par b {comp label2::b:p:38:p, comp addressTextField::b:p::p}, space s:::p, par b {comp cnpTextField::b:p::p, comp label3::b:p::p}}, seq l {par b {comp nameTextField::b:p::p, comp label4::b:p:41:p, comp passwordTextField::b:p::p}, space :p:20:p, par b {comp label5::b:p::p, comp groupTextField::b:p::p}, space s:::p, par b {comp label6::b:::x, comp emailTextField::b:p::p}}}, space :p:21:p, comp updateProfileButton:::p:46:p, space :p:28:p}}"
+				} ) {
+					name: "mainPanel"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "Name"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "nameTextField"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": "Address"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "addressTextField"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label3"
+						"text": "CNP"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "cnpTextField"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "Password"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "passwordTextField"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label5"
+						"text": "Group"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "groupTextField"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "updateProfileButton"
+						"text": "Update Profile"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label6"
+						"text": "Email"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "emailTextField"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Profile"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {space :0:695:x}"
+					"$verticalGroup": "par l {space :0:291:x}"
+				} ) {
+					name: "coursesPanel"
+				}, new FormLayoutConstraints( null ) {
+					"title": "View Courses"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 590, 341 )
+		} )
+	}
+}

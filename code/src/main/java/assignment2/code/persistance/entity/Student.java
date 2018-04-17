@@ -8,8 +8,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "students",
-        uniqueConstraints= {@UniqueConstraint(columnNames = {"CNP", "email"})}
-        )
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"CNP", "email"})}
+)
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -65,7 +65,7 @@ public class Student {
 
     public Grade addGrade(Integer grade, Enrolment enrolment) {
         Grade grade1 = new Grade(grade);
-        grade1.addGrade(grade,enrolment);
+        grade1.addGrade(grade, enrolment);
         return grade1;
     }
 
@@ -154,14 +154,12 @@ public class Student {
         if (this == o) return true;
         if (!(o instanceof Student)) return false;
         Student student = (Student) o;
-        return Objects.equals(id, student.id) &&
-                Objects.equals(name, student.name) &&
-                Objects.equals(email, student.email);
+        return Objects.equals(id, student.id);
+
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id, name, email);
+        return Objects.hash(id);
     }
 }

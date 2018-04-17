@@ -1,0 +1,30 @@
+JFDML JFormDesigner: "6.0.2.0.116" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:68:p, par l {comp studentsBox:::p:138:p, comp studentLoginButton:::p::p}, space :p:107:p, par l:::p {comp teacherLoginButton:::::x, comp teachersBox:::::x}, space ::23:x}}"
+			"$verticalGroup": "par l {seq l {space :p:43:p, par t {comp studentsBox:::p::p, comp teachersBox:::p::p}, space :p:93:p, par b {comp teacherLoginButton::b:p:37:p, comp studentLoginButton::b:p::p}, space ::33:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "studentsBox"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "teachersBox"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "studentLoginButton"
+				"text": "Login as Student"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "teacherLoginButton"
+				"text": "Login as Teacher"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 413, 226 )
+		} )
+	}
+}

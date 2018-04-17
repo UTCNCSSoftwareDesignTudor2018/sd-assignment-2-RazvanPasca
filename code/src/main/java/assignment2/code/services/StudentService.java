@@ -12,7 +12,7 @@ import java.util.List;
 public interface StudentService {
     Student updateProfile(Student student);
 
-    List<Course> viewEnrolledCourse();
+    List<Course> viewEnrolledCourses();
 
     Enrolment enroll(Course course);
 

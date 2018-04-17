@@ -27,15 +27,16 @@ public class Teacher {
         this.name = teacherBuilder.name;
         this.email = teacherBuilder.email;
         this.password = teacherBuilder.password;
-        addCourse(teacherBuilder.course);
+        addCourse(teacherBuilder.course, true);
     }
 
     public Teacher() {
     }
 
-    public void addCourse(Course course){
+    public void addCourse(Course course, Boolean set) {
         courses.add(course);
-        course.setTeacher(this);
+        if (set)
+            course.setTeacher(this, false);
     }
 
     public List<Course> getCourses() {
@@ -91,14 +92,13 @@ public class Teacher {
         if (this == o) return true;
         if (!(o instanceof Teacher)) return false;
         Teacher teacher = (Teacher) o;
-        return Objects.equals(id, teacher.id) &&
-                Objects.equals(name, teacher.name) &&
-                Objects.equals(email, teacher.email);
+        return Objects.equals(id, teacher.id);
+
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, email);
+        return Objects.hash(id);
     }
 }

@@ -39,8 +39,10 @@ public class Course {
 
     public Course(){}
 
-    public void setTeacher(Teacher teacher) {
+    public void setTeacher(Teacher teacher, boolean add) {
         this.teacher = teacher;
+        if (add)
+            teacher.addCourse(this, false);
     }
 
     public Integer getId() {
@@ -75,5 +77,13 @@ public class Course {
     public int hashCode() {
 
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "name='" + name + '\'' +
+                ", teacher=" + teacher +
+                '}';
     }
 }

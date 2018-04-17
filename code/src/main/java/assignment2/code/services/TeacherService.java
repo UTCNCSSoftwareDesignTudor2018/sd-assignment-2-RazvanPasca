@@ -23,4 +23,8 @@ public interface TeacherService {
     Grade addStudentGrade(Student student, Course course, Integer grade);
 
     Teacher updateProfile(Teacher teacher);
+
+    List<Course> viewMyCourses();
+
+    List<Teacher> viewAllTeachers();
 }

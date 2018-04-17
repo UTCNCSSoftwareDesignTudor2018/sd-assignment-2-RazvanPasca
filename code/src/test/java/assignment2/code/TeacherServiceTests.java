@@ -16,8 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,31 +36,54 @@ public class TeacherServiceTests {
     StudentServiceImpl studentService;
 
     @Before
-    void setUp() {
+    public void setUp() {
         Student student1 = new StudentBuilder().setName("Alice").setEmail("alice@yahoo.com").build();
-        Teacher teacher = new TeacherBuilder().build();
         Course course = new Course("mate");
-        course = courseRepository.save(course);
+        Course course1 = new Course("mate2");
 
+        Teacher teacher = new TeacherBuilder().setCourse(course).build();
+        teacher.addCourse(course1, true);
         assertNull(student1.getId());
         assertNull(teacher.getId());
         studentService.updateProfile(student1);
+        studentService.studentContextHolder.setCurrentUser(student1);
         this.teacherRepository.save(teacher);
         assertNotNull(teacher.getId());
         assertNotNull(student1.getId());
-        teacherService.teacherContextHolder.setCurrentUser(teacher);
-        teacherService.enrollStudentToCourse(student1, course);
-
-        gradeService.addGrade(student1, course, 5);
     }
 
     @Test
-    void testStudentEditing() {
+    public void testStudentEditing() {
         List<Student> students = teacherService.viewStudents();
         Student student = students.get(0);
         student.setName("noul meu nume");
         teacherService.updateStudent(student);
-//        Student student1 = te
+        Student student1 = teacherService.viewStudents().get(0);
+        assertEquals(student1, student);
+    }
+
+    @Test
+    public void testStudentEnroll() {
+        Teacher teacher = teacherRepository.findByEmail("default_prof@yahoo.com");
+        teacherService.teacherContextHolder.setCurrentUser(teacher);
+
+        List<Student> students = teacherService.viewStudents();
+        List<Course> courses = teacherService.viewMyCourses();
+        Student student = students.get(0);
+        Enrolment enrolment = teacherService.enrollStudentToCourse(student, courses.get(0));
+        List<Course> courses1 = studentService.viewEnrolledCourses();
+        assertEquals(enrolment.getCourse(), courses1.get(0));
+
+        //testing if the teacher can see the students enrolled to his courses
+        student = teacherService.viewEnrolledStudents(courses.get(0)).get(0);
+        assertEquals("noul meu nume", student.getName());
+    }
+
+    @Test
+    public void testStudentGrading() {
+        Teacher teacher = teacherRepository.findByEmail("default_prof@yahoo.com");
+        teacherService.teacherContextHolder.setCurrentUser(teacher);
+
     }
 
 }

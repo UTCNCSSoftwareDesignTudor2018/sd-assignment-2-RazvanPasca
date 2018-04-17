@@ -14,19 +14,27 @@ import java.util.List;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private StudentRepository studentRepository;
-    private EnrolmentService enrolmentService;
+    @Autowired
     public StudentContextHolder studentContextHolder;
+    @Autowired
+    private StudentRepository studentRepository;
+    @Autowired
+    private EnrolmentService enrolmentService;
+    @Autowired
     private GradeService gradeService;
+    @Autowired
     private CourseService courseService;
 
-    @Autowired
+    //    @Autowired
     public StudentServiceImpl(StudentRepository studentRepository, EnrolmentService enrolmentService,
                               CourseService courseService, GradeService gradeService) {
         this.studentRepository = studentRepository;
         this.courseService = courseService;
         this.gradeService = gradeService;
         this.enrolmentService = enrolmentService;
+    }
+
+    public StudentServiceImpl() {
     }
 
     public StudentContextHolder getStudentContextHolder() {
@@ -43,7 +51,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Course> viewEnrolledCourse() {
+    public List<Course> viewEnrolledCourses() {
         return enrolmentService.findCoursesByStudent(StudentContextHolder.getCurrentUser());
     }
 
@@ -64,6 +72,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> viewAllStudents() {
-        return studentRepository.findAll();
+        List<Student> students = studentRepository.findAll();
+        System.out.println(students);
+        return students;
     }
 }

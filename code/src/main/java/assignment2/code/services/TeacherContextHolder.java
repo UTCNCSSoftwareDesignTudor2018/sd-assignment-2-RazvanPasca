@@ -16,8 +16,8 @@ public class TeacherContextHolder {
         return teacher;
     }
 
-    public static void setCurrentUser(Teacher teacher) {
-        teacher = teacher;
+    public static void setCurrentUser(Teacher teacher1) {
+        teacher = teacher1;
     }
 }
 
