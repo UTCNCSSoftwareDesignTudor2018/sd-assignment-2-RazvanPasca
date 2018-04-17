@@ -1,8 +1,10 @@
 package assignment2.code.persistance.entity;
 
 
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "grades")
@@ -20,7 +22,9 @@ public class Grade {
     })
     private Enrolment enrolment;
 
-    @Column
+    @Column(nullable = false, updatable = false)
+    @Temporal(TemporalType.DATE)
+    @CreatedDate
     private Date requestDate;
 
     @Column
@@ -48,11 +52,13 @@ public class Grade {
         this.id = id;
     }
 
-//    public void addGrade(Integer grad, Course course, Student student) {
-//        this.grade = grade;
+    public void addGrade(Integer grad, Course course, Student student) {
+        this.grade = grade;
+        this.enrolment = new Enrolment(student, course);
 //        this.id.setStudentId(student.getId());
 //        this.id.setCourseId(course.getId());
-//    }
+        this.id = enrolment.getId();
+    }
 
     public void addGrade(Integer grad, Enrolment enrolment) {
         this.grade = grad;

@@ -8,4 +8,5 @@ import java.util.List;
 public interface CourseService {
     List<Course> findCoursesByStudent(Student student);
 
+    List<Course> findAllCourses();
 }

@@ -12,9 +12,9 @@ public interface GradeRepository extends JpaRepository<Grade, EnrolmentId> {
 
     Optional<Grade> findById(EnrolmentId id);
 
-//    List<Grade> findByIdCourseId(Integer courseId);
-//
-//    List<Grade> findByIdStudentId(Integer studentId);
+    List<Grade> findByIdCourseId(Integer courseId);
+
+    List<Grade> findByIdStudentId(Integer studentId);
 
 //    Optional<Grade> findByIdCourseIdAndStudentId(Integer courseId, Integer studentId);
 

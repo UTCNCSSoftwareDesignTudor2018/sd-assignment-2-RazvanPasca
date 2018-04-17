@@ -1,6 +1,7 @@
-package assignment2.code;
+package assignment2.code.repository;
 
 import assignment2.code.persistance.entity.Student;
+import assignment2.code.persistance.entity.StudentBuilder;
 import assignment2.code.persistance.repository.StudentRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,10 +9,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import javax.persistence.EntityManager;
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
@@ -23,8 +20,8 @@ public class StudentRepositoryTests {
     @Before
     public void setUp() throws Exception {
         /*Test saving students*/
-        Student student1 = new Student.Builder().setName("Alice").setEmail("alice@yahoo.com").build();
-        Student student2 = new Student.Builder().setName("Bob").build();
+        Student student1 = new StudentBuilder().setName("Alice").setEmail("alice@yahoo.com").build();
+        Student student2 = new StudentBuilder().setName("Bob").build();
         //save user, verify has ID value after save
         assertNull(student1.getId());
         assertNull(student2.getId());//null before save

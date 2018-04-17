@@ -23,4 +23,9 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> findCoursesByStudent(Student student) {
         return null;
     }
+
+    @Override
+    public List<Course> findAllCourses() {
+        return courseRepository.findAll();
+    }
 }

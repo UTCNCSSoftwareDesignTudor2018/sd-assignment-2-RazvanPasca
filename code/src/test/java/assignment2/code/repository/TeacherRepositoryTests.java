@@ -1,7 +1,8 @@
-package assignment2.code;
+package assignment2.code.repository;
 
 import assignment2.code.persistance.entity.Course;
 import assignment2.code.persistance.entity.Teacher;
+import assignment2.code.persistance.entity.TeacherBuilder;
 import assignment2.code.persistance.repository.TeacherRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,8 +25,8 @@ public class TeacherRepositoryTests {
     @Before
     public void setUp() throws Exception {
         Course mathCourse = new Course("math1");
-        Teacher teacher1 = new Teacher.Builder().setName("Alice").setEmail("12345").setCourse(mathCourse).build();
-        Teacher teacher2 = new Teacher.Builder().setName("Bob").setEmail("38").build();
+        Teacher teacher1 = new TeacherBuilder().setName("Alice").setEmail("12345").setCourse(mathCourse).build();
+        Teacher teacher2 = new TeacherBuilder().setName("Bob").setEmail("38").build();
         //save user, verify has ID value after save
         assertNull(teacher1.getId());
         assertNull(teacher2.getId());//null before save

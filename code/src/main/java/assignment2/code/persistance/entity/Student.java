@@ -6,8 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-import static java.lang.Math.round;
-
 @Entity
 @Table(name = "students",
         uniqueConstraints= {@UniqueConstraint(columnNames = {"CNP", "email"})}
@@ -35,25 +33,39 @@ public class Student {
         return enrolments;
     }
 
+    public Student(StudentBuilder builder) {
+        name = builder.name;
+        CNP = builder.CNP;
+        address = builder.address;
+        email = builder.email;
+        studyGroup = builder.studyGroup;
+        id = builder.id;
+        password = builder.password;
+    }
+
+    public Student() {
+    }
+
     public void setEnrolments(List<Enrolment> enrolments) {
         this.enrolments = enrolments;
     }
 
-    public void addCourse(Course course) {
+    public Enrolment addCourse(Course course) {
         Enrolment enrolment = new Enrolment(this, course);
         enrolments.add(enrolment);
         course.getEnrolments().add(enrolment);
+        return enrolment;
     }
 
-//    public void addGrade(Integer grade, Course course){
-//        Grade grade1 = new Grade(grade);
-//        grade1.addGrade(grade,course,this);
-//    }
+    public Grade addGrade(Integer grade, Course course) {
+        Grade grade1 = new Grade(grade);
+        grade1.addGrade(grade, course, this);
+        return grade1;
+    }
 
     public Grade addGrade(Integer grade, Enrolment enrolment) {
         Grade grade1 = new Grade(grade);
         grade1.addGrade(grade,enrolment);
-        //grades.add(grade1);
         return grade1;
     }
 
@@ -70,71 +82,6 @@ public class Student {
                 enrolment.setCourse(null);
             }
         }
-    }
-
-
-    private Student(Builder builder) {
-        name = builder.name;
-        CNP = builder.CNP;
-        address = builder.address;
-        email = builder.email;
-        studyGroup = builder.studyGroup;
-        id = builder.id;
-        password = builder.password;
-    }
-
-    public Student() {
-    }
-
-    public static class Builder {
-        private String address = "default";
-        private String password = "default";
-        private String CNP = String.valueOf(round(Math.random() * ((2999999999999L - 1000000000000L) + 1)));
-                ;
-        private String email = "default@yahoo.com";
-        private String name;
-        private Integer studyGroup = 1;
-        private Integer id;
-
-        public Builder setAddress(String address) {
-            this.address = address;
-            return this;
-        }
-
-        public Builder setId(int id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder setPassword(String password) {
-            this.password = password;
-            return this;
-        }
-
-        public Builder setCNP(String CNP) {
-            this.CNP = CNP;
-            return this;
-        }
-
-        public Builder setName(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder setEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public Builder setStudyGroup(int studyGroup) {
-            this.studyGroup = studyGroup;
-            return this;
-        }
-
-        public Student build() {
-            return new Student(this);
-        }
-
     }
 
     public String getEmail() {

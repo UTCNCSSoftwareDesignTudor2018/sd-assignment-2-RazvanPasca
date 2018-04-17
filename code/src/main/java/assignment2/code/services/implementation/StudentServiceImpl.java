@@ -1,11 +1,11 @@
 package assignment2.code.services.implementation;
 
 import assignment2.code.persistance.entity.Course;
+import assignment2.code.persistance.entity.Enrolment;
+import assignment2.code.persistance.entity.Grade;
 import assignment2.code.persistance.entity.Student;
 import assignment2.code.persistance.repository.StudentRepository;
-import assignment2.code.services.EnrolmentService;
-import assignment2.code.services.StudentContextHolder;
-import assignment2.code.services.StudentService;
+import assignment2.code.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +16,16 @@ public class StudentServiceImpl implements StudentService {
 
     private StudentRepository studentRepository;
     private EnrolmentService enrolmentService;
-    private StudentContextHolder studentContextHolder;
+    public StudentContextHolder studentContextHolder;
+    private GradeService gradeService;
+    private CourseService courseService;
 
     @Autowired
-    public StudentServiceImpl(StudentRepository studentRepository, EnrolmentService enrolmentService) {
+    public StudentServiceImpl(StudentRepository studentRepository, EnrolmentService enrolmentService,
+                              CourseService courseService, GradeService gradeService) {
         this.studentRepository = studentRepository;
+        this.courseService = courseService;
+        this.gradeService = gradeService;
         this.enrolmentService = enrolmentService;
     }
 
@@ -38,12 +43,22 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Course> viewCourses() {
+    public List<Course> viewEnrolledCourse() {
         return enrolmentService.findCoursesByStudent(StudentContextHolder.getCurrentUser());
     }
 
     @Override
-    public boolean enroll() {
-        return false;
+    public Enrolment enroll(Course course) {
+        return enrolmentService.enrollStudentToCourse(StudentContextHolder.getCurrentUser(), course);
+    }
+
+    @Override
+    public List<Grade> viewGrades() {
+        return gradeService.findByStudent(StudentContextHolder.getCurrentUser());
+    }
+
+    @Override
+    public List<Course> viewAllCourses() {
+        return courseService.findAllCourses();
     }
 }

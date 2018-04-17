@@ -1,12 +1,16 @@
 package assignment2.code.persistance.entity;
 
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "enrolments")
+@EntityListeners(AuditingEntityListener.class)
 public class Enrolment {
     @EmbeddedId
     private EnrolmentId id;
@@ -23,7 +27,9 @@ public class Enrolment {
     @MapsId("courseId")
     private Course course;
 
-    @Column
+    @Column(nullable = false, updatable = false)
+    @Temporal(TemporalType.DATE)
+    @CreatedDate
     private Date requestDate;
 
     public Enrolment(Student student, Course course) {

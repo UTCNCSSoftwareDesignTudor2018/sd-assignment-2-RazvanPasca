@@ -22,7 +22,7 @@ public class Teacher {
     )
     private List<Course> courses = new ArrayList<>();
 
-    public Teacher(Builder teacherBuilder) {
+    public Teacher(TeacherBuilder teacherBuilder) {
         this.id = teacherBuilder.id;
         this.name = teacherBuilder.name;
         this.email = teacherBuilder.email;
@@ -30,43 +30,7 @@ public class Teacher {
         addCourse(teacherBuilder.course);
     }
 
-    public static class Builder{
-        private String password = "default";
-        private String email = "default_prof@yahoo.com";
-        private String name = "default_prof_name";
-        private Integer id;
-        private Course course = new Course("Math" + Math.round(Math.random()*1000000));
 
-        public Builder setId(int id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder setPassword(String password) {
-            this.password = password;
-            return this;
-        }
-
-        public Builder setName(String name){
-            this.name = name;
-            return this;
-        }
-
-        public Builder setEmail(String email){
-            this.email = email;
-            return  this;
-        }
-
-        public Builder setCourse(Course course){
-            this.course = course;
-            return this;
-        }
-
-        public Teacher build(){
-            return new Teacher(this);
-        }
-
-    }
 
     public Teacher() {
     }
