@@ -20,7 +20,8 @@ public class Course {
     @OneToMany(
             mappedBy = "course",
             cascade = CascadeType.PERSIST,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
     )
     private List<Enrolment> enrolments = new ArrayList<>();
 

@@ -1,8 +1,6 @@
 package assignment2.code.services;
 
-import assignment2.code.persistance.entity.Course;
-import assignment2.code.persistance.entity.Grade;
-import assignment2.code.persistance.entity.Student;
+import assignment2.code.persistance.entity.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,9 +16,11 @@ public interface TeacherService {
 
     boolean generateStudentReport(Student student);
 
-    List<Student> viewEnrolledStudents();
+    Enrolment enrollStudentToCourse(Student student, Course course);
 
-    Grade addStudentGrade(Student student, Course course);
+    List<Student> viewEnrolledStudents(Course course);
 
+    Grade addStudentGrade(Student student, Course course, Integer grade);
 
+    Teacher updateProfile(Teacher teacher);
 }

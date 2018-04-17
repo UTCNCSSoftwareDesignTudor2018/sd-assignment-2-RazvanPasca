@@ -2,6 +2,7 @@ package assignment2.code.services.implementation;
 
 import assignment2.code.persistance.entity.Course;
 import assignment2.code.persistance.entity.Student;
+import assignment2.code.persistance.entity.Teacher;
 import assignment2.code.persistance.repository.CourseRepository;
 import assignment2.code.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,10 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> findAllCourses() {
         return courseRepository.findAll();
+    }
+
+    @Override
+    public List<Course> findCoursesByTeacher(Teacher teacher) {
+        return courseRepository.findByTeacherId(teacher.getId());
     }
 }

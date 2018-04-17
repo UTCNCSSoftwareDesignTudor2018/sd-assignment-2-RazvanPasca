@@ -30,8 +30,6 @@ public class Teacher {
         addCourse(teacherBuilder.course);
     }
 
-
-
     public Teacher() {
     }
 

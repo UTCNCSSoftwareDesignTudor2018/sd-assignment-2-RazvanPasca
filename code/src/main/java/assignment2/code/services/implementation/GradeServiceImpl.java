@@ -18,6 +18,7 @@ public class GradeServiceImpl implements GradeService {
     @Autowired
     public GradeServiceImpl(GradeRepository gradeRepository, EnrolmentService enrolmentService) {
         this.gradeRepository = gradeRepository;
+        this.enrolmentService = enrolmentService;
     }
 
     @Override

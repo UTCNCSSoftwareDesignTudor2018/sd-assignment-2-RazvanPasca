@@ -19,4 +19,6 @@ public interface StudentService {
     List<Grade> viewGrades();
 
     List<Course> viewAllCourses();
+
+    List<Student> viewAllStudents();
 }
