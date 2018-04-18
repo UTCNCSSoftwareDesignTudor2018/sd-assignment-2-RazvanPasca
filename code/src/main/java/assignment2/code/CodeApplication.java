@@ -6,15 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CodeApplication {
 
-//    @Autowired
-//    StartingViewController startingViewController;
-
     public static void main(String[] args) {
+//        ReportWriter reportWriter = new ReportWriter();
+//        reportWriter.writeReportToDB();
         SpringApplication.run(CodeApplication.class, args);
-
     }
-
-
 }
 
 

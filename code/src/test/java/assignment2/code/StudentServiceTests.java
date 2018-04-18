@@ -51,11 +51,11 @@ public class StudentServiceTests {
     public void testProfile() {
         Student currentStudent = studentRepository.findByEmail("alice@yahoo.com");
         studentService.studentContextHolder.setCurrentUser(currentStudent);
-        currentStudent.setCNP("111111111");
+        currentStudent.setCnp("111111111");
         currentStudent.setAddress("Zalau");
         studentService.updateProfile(currentStudent);
         Student updatedStudent = studentRepository.findByEmail("alice@yahoo.com");
-        assertEquals("111111111", updatedStudent.getCNP());
+        assertEquals("111111111", updatedStudent.getCnp());
         assertEquals("Zalau", updatedStudent.getAddress());
         assertNotNull(updatedStudent.getId());
 

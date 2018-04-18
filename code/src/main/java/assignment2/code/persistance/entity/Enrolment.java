@@ -1,11 +1,11 @@
 package assignment2.code.persistance.entity;
 
 
-import org.springframework.data.annotation.CreatedDate;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
@@ -16,20 +16,20 @@ public class Enrolment {
     private EnrolmentId id;
 
     @ManyToOne(fetch = FetchType.EAGER,
-            cascade = CascadeType.PERSIST
+            cascade = CascadeType.MERGE
     )
     @MapsId("studentId")
+    @JsonIgnore
     private Student student;
 
     @ManyToOne(fetch = FetchType.EAGER,
-            cascade = CascadeType.PERSIST
+            cascade = CascadeType.MERGE
     )
     @MapsId("courseId")
+    @JsonIgnore
     private Course course;
 
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.DATE)
-    @CreatedDate
+    @Column(nullable = false)
     private Date requestDate;
 
     public Enrolment(Student student, Course course) {

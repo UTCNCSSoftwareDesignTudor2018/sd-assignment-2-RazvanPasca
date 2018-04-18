@@ -1,6 +1,8 @@
 package assignment2.code.persistance.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +19,10 @@ public class Teacher {
     private String password;
     @OneToMany(
             mappedBy = "teacher",
-            cascade = CascadeType.PERSIST,
+            cascade = CascadeType.MERGE,
             fetch = FetchType.EAGER
     )
+    @JsonIgnore
     private List<Course> courses = new ArrayList<>();
 
     public Teacher(TeacherBuilder teacherBuilder) {
@@ -31,6 +34,14 @@ public class Teacher {
     }
 
     public Teacher() {
+    }
+
+    public Teacher(Teacher teacher) {
+        this.id = teacher.id;
+        this.name = teacher.name;
+        this.email = teacher.email;
+        this.password = teacher.password;
+        this.courses = teacher.courses;
     }
 
     public void addCourse(Course course, Boolean set) {

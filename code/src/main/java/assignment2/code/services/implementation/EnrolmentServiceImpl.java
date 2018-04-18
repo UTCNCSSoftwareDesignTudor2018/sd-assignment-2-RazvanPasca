@@ -33,7 +33,7 @@ public class EnrolmentServiceImpl implements EnrolmentService {
 
     @Override
     public List<Student> findStudentsByCourse(Course course) {
-        List<Enrolment> enrolments = enrolmentRepository.findByIdStudentId(course.getId());
+        List<Enrolment> enrolments = enrolmentRepository.findByIdCourseId(course.getId());
         List<Student> students = new ArrayList<>(enrolments.size());
         for (Enrolment enrolment : enrolments) {
             students.add(enrolment.getStudent());

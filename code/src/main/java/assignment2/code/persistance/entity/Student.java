@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "students",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"CNP", "email"})}
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"cnp", "email"})}
 )
 public class Student {
     @Id
@@ -16,7 +16,7 @@ public class Student {
     private Integer id;
     private String name;
     private String email;
-    private String CNP;
+    private String cnp;
     private String password;
     private String address;
     private Integer studyGroup;
@@ -35,12 +35,23 @@ public class Student {
 
     public Student(StudentBuilder builder) {
         name = builder.name;
-        CNP = builder.CNP;
+        cnp = builder.CNP;
         address = builder.address;
         email = builder.email;
         studyGroup = builder.studyGroup;
         id = builder.id;
         password = builder.password;
+    }
+
+    public Student(Student student) {
+        this.id = student.id;
+        this.cnp = student.cnp;
+        this.studyGroup = student.studyGroup;
+        this.email = student.email;
+        this.address = student.address;
+        this.enrolments = student.enrolments;
+        this.name = student.name;
+        this.password = student.password;
     }
 
     public Student() {
@@ -92,12 +103,12 @@ public class Student {
         this.email = email;
     }
 
-    public String getCNP() {
-        return CNP;
+    public String getCnp() {
+        return cnp;
     }
 
-    public void setCNP(String CNP) {
-        this.CNP = CNP;
+    public void setCnp(String cnp) {
+        this.cnp = cnp;
     }
 
     public String getPassword() {
@@ -146,6 +157,10 @@ public class Student {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", cnp='" + cnp + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", studyGroup=" + studyGroup +
                 '}';
     }
 

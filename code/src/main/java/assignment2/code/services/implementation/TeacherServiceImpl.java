@@ -38,6 +38,14 @@ public class TeacherServiceImpl implements TeacherService {
     public TeacherServiceImpl() {
     }
 
+    public Teacher getCurrentUser() {
+        return TeacherContextHolder.getCurrentUser();
+    }
+
+    public void setCurrentUser(Teacher teacher) {
+        TeacherContextHolder.setCurrentUser(teacher);
+    }
+
     @Override
     public Student createStudentAccount(Student student) {
         return studentService.updateProfile(student);
@@ -87,6 +95,5 @@ public class TeacherServiceImpl implements TeacherService {
     public List<Teacher> viewAllTeachers() {
         return teacherRepository.findAll();
     }
-
 
 }

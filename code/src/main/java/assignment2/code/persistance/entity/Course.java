@@ -39,6 +39,13 @@ public class Course {
 
     public Course(){}
 
+    public Course(Course course) {
+        this.name = course.name;
+        this.teacher = course.teacher;
+        this.id = course.id;
+        this.enrolments = course.enrolments;
+    }
+
     public void setTeacher(Teacher teacher, boolean add) {
         this.teacher = teacher;
         if (add)

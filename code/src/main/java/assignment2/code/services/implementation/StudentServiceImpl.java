@@ -25,7 +25,6 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private CourseService courseService;
 
-    //    @Autowired
     public StudentServiceImpl(StudentRepository studentRepository, EnrolmentService enrolmentService,
                               CourseService courseService, GradeService gradeService) {
         this.studentRepository = studentRepository;
@@ -37,12 +36,12 @@ public class StudentServiceImpl implements StudentService {
     public StudentServiceImpl() {
     }
 
-    public StudentContextHolder getStudentContextHolder() {
-        return studentContextHolder;
+    public Student getCurrentUser() {
+        return StudentContextHolder.getCurrentUser();
     }
 
-    public void setStudentContextHolder(StudentContextHolder studentContextHolder) {
-        this.studentContextHolder = studentContextHolder;
+    public void setCurrentUser(Student student) {
+        StudentContextHolder.setCurrentUser(student);
     }
 
     @Override
@@ -73,7 +72,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> viewAllStudents() {
         List<Student> students = studentRepository.findAll();
-        System.out.println(students);
         return students;
     }
 }

@@ -1,6 +1,7 @@
 package assignment2.code.persistance.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Grade {
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.DATE)
     @CreatedDate
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date requestDate;
 
     @Column

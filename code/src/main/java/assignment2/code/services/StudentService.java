@@ -21,4 +21,5 @@ public interface StudentService {
     List<Course> viewAllCourses();
 
     List<Student> viewAllStudents();
+
 }
