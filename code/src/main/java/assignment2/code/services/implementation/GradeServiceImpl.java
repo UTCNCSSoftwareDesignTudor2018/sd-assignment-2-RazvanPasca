@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GradeServiceImpl implements GradeService {
@@ -23,7 +24,10 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public Grade findByEnrolment(Student student, Course course) {
-        return gradeRepository.findById(new EnrolmentId(student.getId(), course.getId())).get();
+        Optional<Grade> grade = gradeRepository.findById(new EnrolmentId(student.getId(), course.getId()));
+        if (grade.isPresent())
+            return grade.get();
+        return new Grade(-1);
     }
 
     @Override

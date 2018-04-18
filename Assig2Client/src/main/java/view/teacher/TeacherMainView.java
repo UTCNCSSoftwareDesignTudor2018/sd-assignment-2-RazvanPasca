@@ -40,7 +40,7 @@ public class TeacherMainView extends JFrame {
         scrollPane1 = new JScrollPane();
         studentList = new JList();
         label5 = new JLabel();
-        textField1 = new JTextField();
+        gradeTextField = new JTextField();
         addGradeButton = new JButton();
         coursesBox = new JComboBox();
         writeReportButton = new JButton();
@@ -146,7 +146,7 @@ public class TeacherMainView extends JFrame {
                             .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 483, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(panel1Layout.createParallelGroup()
-                                .addComponent(textField1, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                                .addComponent(gradeTextField, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                                 .addComponent(addGradeButton, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                                 .addGroup(panel1Layout.createSequentialGroup()
                                     .addGroup(panel1Layout.createParallelGroup()
@@ -166,7 +166,7 @@ public class TeacherMainView extends JFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(label5, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(gradeTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(addGradeButton)
                                     .addGap(18, 18, 18)
@@ -215,7 +215,7 @@ public class TeacherMainView extends JFrame {
     private JScrollPane scrollPane1;
     private JList studentList;
     private JLabel label5;
-    private JTextField textField1;
+    private JTextField gradeTextField;
     private JButton addGradeButton;
     private JComboBox coursesBox;
     private JButton writeReportButton;
@@ -263,22 +263,37 @@ public class TeacherMainView extends JFrame {
             this.coursesBox.addItem(course.getName());
     }
 
-    public void setWriteReportButtonListener(ActionListener e){
+    public void setWriteReportButtonListener(ActionListener e) {
         this.writeReportButton.addActionListener(e);
     }
 
-    public void addCoursesBoxListener(ItemListener e){
+    public void addCoursesBoxListener(ItemListener e) {
         this.coursesBox.addItemListener(e);
     }
-    public int getSelectedCourseIndex(){
+
+    public int getSelectedCourseIndex() {
         return this.coursesBox.getSelectedIndex();
     }
-    public void addStudentListListener(MouseListener e){
+
+    public void addStudentListListener(MouseListener e) {
         this.studentList.addMouseListener(e);
     }
 
-    public int getClickIndex(){
+    public void addSetStudentGradeListener(ActionListener e){
+        this.addGradeButton.addActionListener(e);
+    }
+
+    public int getClickIndex() {
         return this.studentList.getSelectedIndex();
     }
+
+    public String getGrade() {
+        return gradeTextField.getText();
+    }
+
+    public void setGrade(String grade) {
+        this.gradeTextField.setText(grade);
+    }
+
 
 }

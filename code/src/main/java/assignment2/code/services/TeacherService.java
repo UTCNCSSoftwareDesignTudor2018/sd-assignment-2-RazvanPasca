@@ -14,7 +14,7 @@ public interface TeacherService {
 
     Student updateStudent(Student student);
 
-    boolean generateStudentReport(Student student);
+    void generateStudentReport(Course course);
 
     Enrolment enrollStudentToCourse(Student student, Course course);
 

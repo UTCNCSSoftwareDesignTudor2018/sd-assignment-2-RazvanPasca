@@ -44,8 +44,8 @@ new FormModel {
 					"title": "Teacher Profile"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq t {space :p:33:p, comp scrollPane1:::p:483:p, space :::p, par l {comp textField1::::212:x, comp addGradeButton::l::212:x, seq {par l {comp coursesBox:::p:154:p, comp label5:::p:154:p}, space :0:58:x}, comp writeReportButton::l::212:x}, space :::p}}"
-					"$verticalGroup": "par l {seq l {space :p:24:p, par l {seq {comp coursesBox:::p::p, space s:::p, comp label5:::p:39:p, space s:::p, comp textField1:::p::p, space s:::p, comp addGradeButton:::p::p, space s:::p, comp writeReportButton:::p::p, space :0:13:x}, comp scrollPane1::::274:x}, space :::p}}"
+					"$horizontalGroup": "par l {seq t {space :p:33:p, comp scrollPane1:::p:483:p, space :::p, par l {comp gradeTextField::::212:x, comp addGradeButton::l::212:x, seq {par l {comp coursesBox:::p:154:p, comp label5:::p:154:p}, space :0:58:x}, comp writeReportButton::l::212:x}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :p:24:p, par l {seq {comp coursesBox:::p::p, space s:::p, comp label5:::p:39:p, space s:::p, comp gradeTextField:::p::p, space s:::p, comp addGradeButton:::p::p, space s:::p, comp writeReportButton:::p::p, space :0:13:x}, comp scrollPane1::::274:x}, space :::p}}"
 				} ) {
 					name: "panel1"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -59,7 +59,7 @@ new FormModel {
 						"text": "Grade"
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField1"
+						name: "gradeTextField"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "addGradeButton"

@@ -1,6 +1,7 @@
 package assignment2.code.controller;
 
 import assignment2.code.persistance.entity.Course;
+import assignment2.code.persistance.entity.Grade;
 import assignment2.code.persistance.entity.Student;
 import assignment2.code.persistance.entity.Teacher;
 import assignment2.code.services.implementation.TeacherServiceImpl;
@@ -14,6 +15,7 @@ public class TeacherController {
     @Autowired
     TeacherServiceImpl teacherService;
     private Course course;
+    private Student student;
 
     @RequestMapping("/getTeachers")
     public List<Teacher> viewAllTeachers() {
@@ -50,6 +52,26 @@ public class TeacherController {
         Course course = new Course(input);
         this.course = course;
         return teacherService.viewEnrolledStudents(course);
+    }
+
+    @RequestMapping(value = "/getStudentGrade", method= RequestMethod.POST)
+    @ResponseBody
+    public Grade getStudentGrade(@RequestBody Student input){
+        Student student = new Student(input);
+        this.student = student;
+        return teacherService.getStudentGrade(student,course);
+    }
+
+    @RequestMapping(value = "/setStudentGrade",method= RequestMethod.POST)
+    @ResponseBody
+    public Grade setStudentGrade(@RequestBody Integer intg){
+        Grade grade = teacherService.addStudentGrade(student,course,intg);
+        return grade;
+    }
+
+    @RequestMapping("/generateReport")
+    public void generateStudentsReport(){
+        teacherService.generateStudentReport(course);
     }
 
 }

@@ -2,14 +2,17 @@ package assignment2.code.persistance.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.data.annotation.CreatedDate;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "grades")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Grade {
 
     @EmbeddedId
@@ -22,15 +25,24 @@ public class Grade {
             @JoinColumn(name = "course_id", referencedColumnName = "course_id"),
             @JoinColumn(name = "student_id", referencedColumnName = "student_id")
     })
+    @JsonIgnore
     private Enrolment enrolment;
 
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.DATE)
-    @CreatedDate
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    public Enrolment getEnrolment() {
+        return enrolment;
+    }
+
+    public void setEnrolment(Enrolment enrolment) {
+        this.enrolment = enrolment;
+    }
+
+    @Column(nullable = false)
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonIgnore
     private Date requestDate;
 
     @Column
+    @JsonProperty("grade")
     private Integer grade;
 
     public Grade(Integer grade) {
@@ -101,7 +113,6 @@ public class Grade {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, enrolment);
     }
 }

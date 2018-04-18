@@ -23,9 +23,6 @@ public class StudentMainView extends JFrame {
         initComponents();
     }
 
-    private void courseListMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
 
 
     private void initComponents() {
@@ -65,7 +62,7 @@ public class StudentMainView extends JFrame {
                     new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
                         "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
                         javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                        java.awt.Color.red), profilePanel.getBorder())); profilePanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+                        java.awt.Color.red), profilePanel.getBorder()));
 
 
                 //---- label2 ----
@@ -164,14 +161,7 @@ public class StudentMainView extends JFrame {
                 //======== scrollPane1 ========
                 {
 
-                    //---- courseList ----
-                    courseList.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            courseListMouseClicked(e);
-                        }
-                    });
-                    scrollPane1.setViewportView(courseList);
+
                 }
 
                 //---- enrollButton ----

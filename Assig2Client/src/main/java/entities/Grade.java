@@ -1,6 +1,8 @@
 package entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -8,9 +10,9 @@ public class Grade {
 
     private EnrolmentId id;
 
-
     private Enrolment enrolment;
 
+    @JsonIgnore
     private Date requestDate;
 
     private Integer grade;

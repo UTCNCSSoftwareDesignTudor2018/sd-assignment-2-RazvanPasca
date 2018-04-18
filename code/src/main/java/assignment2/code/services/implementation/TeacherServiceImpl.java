@@ -23,6 +23,8 @@ public class TeacherServiceImpl implements TeacherService {
     private StudentService studentService;
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private ReportWriter reportWriter;
 
     @Autowired
     public TeacherServiceImpl(TeacherRepository teacherRepository, StudentService studentService,
@@ -62,8 +64,9 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public boolean generateStudentReport(Student student) {
-        return true;
+    public void generateStudentReport(Course course) {
+        List<Grade> grades = gradeService.findByCourse(course);
+        reportWriter.writeReportToDB(grades);
     }
 
     @Override
@@ -96,4 +99,7 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherRepository.findAll();
     }
 
+    public Grade getStudentGrade(Student student, Course course) {
+        return gradeService.findByEnrolment(student, course);
+    }
 }

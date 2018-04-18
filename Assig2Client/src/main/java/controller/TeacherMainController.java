@@ -1,23 +1,12 @@
 package controller;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import entities.Course;
-import entities.Student;
-import entities.Teacher;
-import entities.TeacherBuilder;
+import entities.*;
 import view.teacher.TeacherMainView;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class TeacherMainController {
 
@@ -27,7 +16,10 @@ public class TeacherMainController {
     private List<Student> students;
     private final String TEACHER_UPDATE_REQUEST = "http://localhost:8080/updateTeacher";
     private final String VIEW_TEACHER_COURSES = "http://localhost:8080/getTeacherCourses";
-    private final String VIEW_TEACHER_STUDENTS = "http://localhost:808/getTeacherStudents";
+    private final String VIEW_TEACHER_STUDENTS = "http://localhost:8080/getTeacherStudents";
+    private final String VIEW_STUDENT_GRADE = "http://localhost:8080/getStudentGrade";
+    private final String SET_STUDENT_GRADE = "http://localhost:8080/setStudentGrade";
+    private final String GENERATE_REPORT_REQUEST = "http://localhost:8080/generateReport";
 
 
     public TeacherMainController(TeacherMainView teacherMainView, Teacher teacher) {
@@ -35,66 +27,78 @@ public class TeacherMainController {
         teacherMainView.setVisible(true);
         teacherMainView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.teacher = teacher;
-        this.courses = getCoursesRequest();
+        this.courses = Poster.getCoursesRequest(VIEW_TEACHER_COURSES);
         this.tmv.setTeacherFields(teacher);
         this.tmv.setCoursesBox(courses);
         addViewListeners();
-
     }
 
-    private void addViewListeners(){
-        addUpdateButtonListener(teacher.getId(),teacher.getCourses());
+    private void addViewListeners() {
+        addUpdateButtonListener(teacher.getId(), teacher.getCourses());
         addWriteReportListener();
         addCoursesBoxListener();
         addStudentListListener();
+        addSetGradeListener();
+    }
+
+    private void addSetGradeListener() {
+        this.tmv.addSetStudentGradeListener(e -> {
+            Integer grade = Integer.valueOf(tmv.getGrade());
+            Poster.sendRequest(SET_STUDENT_GRADE, grade);
+        });
     }
 
     private void addStudentListListener() {
         this.tmv.addStudentListListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                int index = tmv.getClickIndex();
+                Grade grade = sendViewGradeRequest(students.get(index));
+                if (grade == null || (grade.getGrade() == -1)) {
+                    tmv.setGrade("Not graded yet");
+                } else
+                    tmv.setGrade(grade.getGrade().toString());
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
-
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-
             }
         });
     }
 
+    private Grade sendViewGradeRequest(Student student) {
+        return Poster.sendRequestWithGradeReply(VIEW_STUDENT_GRADE, student);
+    }
+
     private void addCoursesBoxListener() {
-        this.tmv.addCoursesBoxListener(e ->{
+        this.tmv.addCoursesBoxListener(e -> {
             int index = tmv.getSelectedCourseIndex();
             Course course = courses.get(index);
-            students = Poster.sendRequestWithResponse(VIEW_TEACHER_STUDENTS,course);
+            students = Poster.sendRequestWithStudentsReply(VIEW_TEACHER_STUDENTS, course);
             tmv.setStudentList(students);
         });
     }
 
     private void addWriteReportListener() {
         this.tmv.setWriteReportButtonListener(e -> {
-
+            Poster.sendRequest(GENERATE_REPORT_REQUEST,null);
         });
     }
 
     private void addUpdateButtonListener(Integer id, List<Course> courses) {
-        this.tmv.addUpdateButtonListener(e ->{
+        this.tmv.addUpdateButtonListener(e -> {
             Teacher teacher = new TeacherBuilder().setEmail(tmv.getEmailTextField()).
                     setName(tmv.getNameTextField()).setPassword(tmv.getPasswordTextField()).setId(id).build();
             teacher.setCourses(courses);
@@ -108,22 +112,5 @@ public class TeacherMainController {
         Poster.sendRequest(TEACHER_UPDATE_REQUEST, teacher);
     }
 
-    private List<Course> getCoursesRequest() {
-        List<Course> courses = new ArrayList<>();
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            URL getCoursesRequest = new URL(VIEW_TEACHER_COURSES);
-            Scanner scanner = new Scanner(getCoursesRequest.openStream());
-            String response = scanner.useDelimiter("\\Z").next();
-            courses = objectMapper.readValue(response, new TypeReference<List<Course>>() {
-            });
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return courses;
-    }
+
 }
