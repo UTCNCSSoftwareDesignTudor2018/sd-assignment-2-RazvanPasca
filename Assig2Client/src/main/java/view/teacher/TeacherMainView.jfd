@@ -1,0 +1,84 @@
+JFDML JFormDesigner: "6.0.2.0.116" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:16:p, comp tabbedPane1:::p:742:p, space ::84:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp tabbedPane1:::p:349:p, space ::29:x}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tabbedPane1"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:39:p, par l:::p {comp label2::t::80:x, comp label3::t::80:x, comp label4::t::80:x}, space :p:18:p, par l {seq {par l {comp nameTextField:::p:187:p, comp emailTextField:::p:187:p}, space s:::p, comp updateProfileButton:::p:192:p}, comp passwordTextField:::p:187:p}, space ::206:x}}"
+					"$verticalGroup": "par l {seq l {par l {seq {space :p:25:p, par b {comp label2::b:p::p, comp nameTextField::b:p::p}, space s:::p, par b {comp label3::b:p::p, comp emailTextField::b:p::p}}, seq t {space :::p, comp updateProfileButton:::p:63:p}}, space s:::p, par b {comp label4::b:p::p, comp passwordTextField::b:p::p}, space ::120:x}}"
+				} ) {
+					name: "teacherProfile"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": "Name"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label3"
+						"text": "Email"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "Password"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "nameTextField"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "emailTextField"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "passwordTextField"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "updateProfileButton"
+						"text": "Update my profile"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Teacher Profile"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq t {space :p:33:p, comp scrollPane1:::p:483:p, space :::p, par l {comp textField1::::212:x, comp addGradeButton::l::212:x, seq {par l {comp coursesBox:::p:154:p, comp label5:::p:154:p}, space :0:58:x}, comp writeReportButton::l::212:x}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :p:24:p, par l {seq {comp coursesBox:::p::p, space s:::p, comp label5:::p:39:p, space s:::p, comp textField1:::p::p, space s:::p, comp addGradeButton:::p::p, space s:::p, comp writeReportButton:::p::p, space :0:13:x}, comp scrollPane1::::274:x}, space :::p}}"
+				} ) {
+					name: "panel1"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						add( new FormComponent( "javax.swing.JList" ) {
+							name: "studentList"
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label5"
+						"text": "Grade"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField1"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "addGradeButton"
+						"text": "Add grade"
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "coursesBox"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "writeReportButton"
+						"text": "Write report"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Enrolled Students View"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 677, 341 )
+		} )
+	}
+}
